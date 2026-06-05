@@ -46,7 +46,7 @@ def create_sidebar_filters(df):
 
     return Facility_Type_Display, management, unique_lga
 
-def filter_data(df, Facility_Type_Display, management, phcn_Electricity):
+def filter_data(df, Facility_Type_Display, management, PHCN_Electricity):
     filtered_df = df[df['Facility_Type_Display'].isin(Facility_Type_Display) & df['management'].isin(management)]
     return filtered_df
 
