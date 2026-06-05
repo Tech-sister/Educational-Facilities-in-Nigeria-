@@ -61,15 +61,15 @@ def display_metrics(filtered_df):
 
     with col3:
         avg_students = filtered_df['Total_Number_students'].mean() if len(filtered_df) > 0 else 0
-        st.metric("🤷‍♂️ avg_students", f"{avg_students:,.2f}")
+        st.metric("🤷‍♂️ avg students", f"{avg_students:,.2f}")
 
     with col4:
         electricity_pct = (filtered_df['PHCN_Electricity'] == True).sum() / len(filtered_df) * 100 if len(filtered_df) > 0 else 0
-        st.metric("💡 PHCN_Electricity", f"{electricity_pct:,.1f}%")
+        st.metric("💡 PHCN Electricity", f"{electricity_pct:,.1f}%")
 
     with col5:
         Water_pct = (filtered_df['Improved_Water_Supply'] == True).sum() / len(filtered_df) * 100 if len(filtered_df) > 0 else 0
-        st.metric("💧Improved_Water_Supply", f"{Water_pct:.1f}%")
+        st.metric("💧Improved Water Supply", f"{Water_pct:.1f}%")
 
 def display_charts(filtered_df):
     if len(filtered_df) == 0:
@@ -194,21 +194,21 @@ def main():
     display_charts(filtered_df)
     # display table_data
     display_table_data(filtered_df)
-st.subheader("Insights & Recommendations")
+# st.subheader("Insights & Recommendations")
 
-st.markdown("""
-**Major Findings**
-- Many schools lack reliable electricity access.
-- Water and sanitation facilities are not evenly distributed across Nigeria.
-- Public schools generally serve larger student populations than private schools.
-- Some states have significantly higher school densities than others.
+# st.markdown("""
+# **Major Findings**
+# - Many schools lack reliable electricity access.
+# - Water and sanitation facilities are not evenly distributed across Nigeria.
+# - Public schools generally serve larger student populations than private schools.
+# - Some states have significantly higher school densities than others.
 
-**Recommendations**
-- Prioritize investment in electricity and sanitation infrastructure.
-- Allocate more teachers to schools with high student-to-teacher ratios.
-- Use geographic data to target underserved LGAs and states.
-- Support data-driven planning through continuous monitoring of educational facilities.
-""")
+# **Recommendations**
+# - Prioritize investment in electricity and sanitation infrastructure.
+# - Allocate more teachers to schools with high student-to-teacher ratios.
+# - Use geographic data to target underserved LGAs and states.
+# - Support data-driven planning through continuous monitoring of educational facilities.
+# """)
 
     
 
