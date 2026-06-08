@@ -14,7 +14,7 @@ st.set_page_config(
 @st.cache_data
 def load_data():
     try:
-        df = pd.read_csv("data/educational_Cleaned_Data.csv")
+        df = pd.read_csv("data/educational_cleaned_Data.csv")
         return df
     except FileNotFoundError as e:
         st.warning(f"An error occured: {e}")
@@ -54,14 +54,15 @@ def display_metrics(filtered_df):
     col1, col2, col3, col4, col5 = st.columns(5)
 
     with col1:
-        st.metric("🏨 Total school", f"{len(filtered_df):,.2f}")
-
+        st.metric("🏨 Total School", f"{len(filtered_df):,.2f}")
+        
     with col2:
-        st.metric("👨‍👩‍👧‍👦 num student total", f"{len (filtered_df):,.2f}")
+         total_students = filtered_df['Total_Number_students'].sum() if len(filtered_df) > 0 else 0
+         st.metric("👨‍👩‍👧‍👦 Total Number Students", f"{(total_students):,.2f}")
 
     with col3:
         avg_students = filtered_df['Total_Number_students'].mean() if len(filtered_df) > 0 else 0
-        st.metric("🤷‍♂️ avg students", f"{avg_students:,.2f}")
+        st.metric("🤷‍♂️ Average Students", f"{avg_students:,.2f}")
 
     with col4:
         electricity_pct = (filtered_df['PHCN_Electricity'] == True).sum() / len(filtered_df) * 100 if len(filtered_df) > 0 else 0
@@ -90,17 +91,17 @@ def display_charts(filtered_df):
 
     fig2 = px.histogram(
     filtered_df, x='Total_Number_students', nbins=50,
-          title="Student population distribution"
+          title="Student Population istribution"
     )
     fig2.update_traces(marker_line_color='white',marker_line_width=1)
     st.plotly_chart(fig2, width='stretch')
 
     with col1:
-        comparison = (filtered_df.groupby('management')[['num_student_total', 'num_teachers_total']].mean().reset_index())   
+        comparison = (filtered_df.groupby('management')[['Total_Number_students', 'num_teachers_total']].mean().reset_index())   
         fig3= px.bar(
             comparison,
             x='management',
-            y=['num_student_total', 'num_teachers_total'],
+            y=['Total_Number_students', 'num_teachers_total'],
             barmode='group',
             title='Public vs Private Schools: Average Students and Teachers',
             labels={
