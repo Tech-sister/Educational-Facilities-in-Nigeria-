@@ -1,1 +1,1 @@
-# Educational-Facilities-in-Nigeria-
+# educational-facilities-in-nigeria
